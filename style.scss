@@ -1,0 +1,75 @@
+body {
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.circle {
+    background-color: yellow;
+    width: 100px;
+    height: 100px;
+    clip-path: circle(100px at 50% 50%);
+    transition: all .5s ease;
+    animation-name: round;
+    animation-duration: 8s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.loading {
+    background: linear-gradient(to right, rgb(2, 219, 20) 50%, white 50%);
+    background-size: 200% 100%;
+    background-position-x: 100%;
+    width: 500px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: load 2s linear infinite;
+    border: 2px;
+    border-color: #ccc;
+    border-style: solid;
+    border-radius: 25px;
+}
+
+@keyframes round {
+    0% {
+        transform: translate(0, 0);
+        clip-path: circle(50px at 50% 50%);
+    }
+    25% {
+        transform: translate(calc(100vw - 100px), 0);
+        clip-path: polygon(0 0, 100px 0, 100px 100px, 0 100px);
+    }
+    50% {
+        transform: translate(calc(100vw - 100px), calc(100vh - 100px));
+        clip-path: circle(50px at 50% 50%);
+    }
+    75% {
+        transform: translate(0, calc(100vh - 100px));
+        clip-path: polygon(0 0, 100px 0, 100px 100px, 0 100px);
+    }
+    100% {
+        transform: translate(0, 0);
+        clip-path: circle(50px at 50% 50%);
+    }
+}
+
+.circle:hover {
+    opacity: 0;
+}
+
+@keyframes load {
+    0% {
+        background-position-x: 100%;
+    }
+    50% {
+        background-position-x: 0;
+    }
+    100% {
+        background-position-x: -100%;
+    }
+}
